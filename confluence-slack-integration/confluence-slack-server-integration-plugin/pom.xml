@@ -428,6 +428,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.5.3</version>
                 <configuration>
                     <argLine>${jvm17.opens}</argLine>
                     <trimStackTrace>false</trimStackTrace>

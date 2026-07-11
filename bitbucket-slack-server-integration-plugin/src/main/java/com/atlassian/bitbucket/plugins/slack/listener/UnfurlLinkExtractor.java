@@ -99,7 +99,7 @@ public class UnfurlLinkExtractor {
         final URI link = URI.create(url);
         // it should contain only the path after the context path
         final URI relativeLink = getContentPath(link);
-        final MultiValueMap<String, String> queryParams = UriComponentsBuilder.fromHttpUrl(decodeValue(url))
+        final MultiValueMap<String, String> queryParams = UriComponentsBuilder.fromUriString(decodeValue(url))
                 .build().getQueryParams();
         try {
             final Comment comment = tryComment(queryParams).orElse(null);
