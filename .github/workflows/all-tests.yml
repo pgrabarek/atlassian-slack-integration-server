@@ -30,17 +30,13 @@ jobs:
     # around 800 Mb of dependencies need to be loaded; it may take long first time until it's cached
     timeout-minutes: 30
     if: "(github.event.inputs.jobs == '' || contains(github.event.inputs.jobs, 'unit-tests')) && !contains(github.event.head_commit.message, '[skip ci]')"
-    strategy:
-      matrix:
-        java-version: [21,25]
-      fail-fast: false
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.inputs.ref }}
       - uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 25
           distribution: adopt
       - run: bin/build/install-plugin-sdk.sh
       - uses: actions/cache@v4
@@ -51,7 +47,7 @@ jobs:
       - run: bin/build/run-unit-tests.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: unit-tests-coverage-java-${{ matrix.java-version }}
+          name: unit-tests-coverage-java-25
           path: '**/target/site/jacoco/**'
 
   integration-tests-jira:
@@ -62,7 +58,6 @@ jobs:
     needs: unit-tests
     strategy:
       matrix:
-        java-version: [21,25]
         jira-version: [11.0.0]
       fail-fast: false
     steps:
@@ -71,7 +66,7 @@ jobs:
           ref: ${{ github.event.inputs.ref }}
       - uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 25
           distribution: adopt
       - run: bin/build/install-plugin-sdk.sh
       - run: bin/build/override-plugin-sdk-maven.sh
@@ -89,7 +84,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: webdriver-screenshots-jira-${{ matrix.jira-version }}
+          name: webdriver-screenshots-jira-${{ matrix.jira-version }}-java-25
           path: jira-slack-server-integration/jira-slack-server-integration-plugin/target/webdriverTests/**
 
   integration-tests-confluence:
@@ -101,7 +96,6 @@ jobs:
     strategy:
       matrix:
         # every version part should be 0 <= <version> <= 255; otherwise Confluence fails to start
-        java-version: [21,25]
         confluence-version: [10.0.1]
       fail-fast: false
     steps:
@@ -110,7 +104,7 @@ jobs:
           ref: ${{ github.event.inputs.ref }}
       - uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 25
           distribution: adopt
       - run: bin/build/install-plugin-sdk.sh
       - run: bin/build/override-plugin-sdk-maven.sh
@@ -139,8 +133,6 @@ jobs:
     needs: unit-tests
     strategy:
       matrix:
-        # Bitbucket doesn't support JDK25
-        java-version: [21]
         bitbucket-version: [10.0.0]
       fail-fast: false
     steps:
@@ -152,7 +144,7 @@ jobs:
       - run: bin/build/install-supported-git.sh
       - uses: actions/setup-java@v4
         with:
-          java-version: ${{ matrix.java-version }}
+          java-version: 25
           distribution: adopt
       - run: bin/build/install-plugin-sdk.sh
       - run: bin/build/override-plugin-sdk-maven.sh
@@ -170,5 +162,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: webdriver-screenshots-bitbucket-${{ matrix.bitbucket-version }}-java-${{ matrix.java-version }}
+          name: webdriver-screenshots-bitbucket-${{ matrix.bitbucket-version }}-java-25
           path: bitbucket-slack-server-integration-plugin/target/webdriverTests/**
