@@ -18,8 +18,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <jvm17.opens />
 
         <!-- default properties. copied from parent POM in order to allow to resolve plugin dependencies during BBS build -->
@@ -42,13 +42,13 @@
         <bitbucket.api.version>10.0.0</bitbucket.api.version>
 
         <!-- Bitbucket version used for integration tests; can be overridden to test against different versions -->
-        <bitbucket.version>10.0.0</bitbucket.version>
+        <bitbucket.version>11.0.0-platform9-m015</bitbucket.version>
         <bitbucket.data.version>${bitbucket.version}</bitbucket.data.version>
         <!-- Starting from 9.3+ BitbucketLoginPage fails to find web elements on login page -->
         <bitbucket.page.objects.version>9.2.1</bitbucket.page.objects.version>
 
         <!-- Platform version used for dependency management -->
-        <platform.version>8.0.0</platform.version>
+        <platform.version>9.0.0-m017</platform.version>
 
         <!-- Dependency versions -->
         <atlassian.spring.scanner.version>6.0.0</atlassian.spring.scanner.version>
