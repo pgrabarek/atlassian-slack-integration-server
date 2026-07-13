@@ -356,6 +356,21 @@
         </developer>
     </developers>
 
+    <repositories>
+        <repository>
+            <id>atlassian-closedsource</id>
+            <name>Atlassian Closed Source Maven Repository</name>
+            <url>https://packages.atlassian.com/maven-closedsource/</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <licenses>
         <license>
             <name>Apache License 2.0</name>
