@@ -24,7 +24,7 @@
         <jira.amps.version>${amps.version}</jira.amps.version>
 
         <!-- Jira version used for integration tests; can be overridden to test against different versions -->
-        <jira.version>11.0.0</jira.version>
+        <jira.version>11.3.2</jira.version>
         <jira.data.version>${jira.version}</jira.data.version>
 
         <!-- Dependencies and plugins that must align with the running Jira during integration tests -->

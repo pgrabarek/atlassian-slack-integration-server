@@ -58,7 +58,7 @@ jobs:
     needs: unit-tests
     strategy:
       matrix:
-        jira-version: [11.0.0]
+        jira-version: [11.3.2]
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -96,7 +96,7 @@ jobs:
     strategy:
       matrix:
         # every version part should be 0 <= <version> <= 255; otherwise Confluence fails to start
-        confluence-version: [10.0.1]
+        confluence-version: [10.2.2]
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
@@ -133,7 +133,7 @@ jobs:
     needs: unit-tests
     strategy:
       matrix:
-        bitbucket-version: [10.0.0]
+        bitbucket-version: [10.3.2]
       fail-fast: false
     steps:
       - uses: actions/checkout@v4
